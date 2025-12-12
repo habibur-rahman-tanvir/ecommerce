@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import Seller from '../model/sellerModel.js';
 import AppError from '../error/AppError.js';
 
@@ -20,6 +21,7 @@ export const loginSeller = async (req, res) => {
   req.session.user = {
     id: seller._id,
     email: seller.email,
+    role: seller.role,
   };
   res.json({
     status: 'success',
@@ -35,5 +37,28 @@ export const logoutSeller = async (req, res) => {
       status: 'success',
       message: 'Signout successful',
     });
+  });
+};
+
+export const refreshJwtToken = async (req, res) => {
+  if (!req.session.user) {
+    throw new AppError('Seller not signed in', 401);
+  }
+  const secret = process.env.SELLER_JWT_SECRET || 'n3yOH6TbscCVt&~';
+  const token = jwt.sign(
+    {
+      id: `${req.session.user?.id}`,
+      email: req.session.user?.email,
+      role: `${req.session.user?.role}`,
+    },
+    secret,
+    {
+      noTimestamp: true,
+      expiresIn: 60 * 15, // valid for 15 minutes
+    },
+  );
+  res.json({
+    status: 'success',
+    jwt: token,
   });
 };

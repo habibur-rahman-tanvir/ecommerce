@@ -3,15 +3,17 @@ import {
   createSeller,
   loginSeller,
   logoutSeller,
+  refreshJwtToken,
 } from '../controller/sellerAuthController.js';
-import sellerSessionMiddleware from '../config/sellerSession.js';
+import sellerSession from '../config/sellerSession.js';
 
 const router = express.Router();
 
-router.use(sellerSessionMiddleware);
+router.use(sellerSession);
 
 router.post('/signup', createSeller);
 router.post('/signin', loginSeller);
 router.post('/signout', logoutSeller);
+router.post('/refresh', refreshJwtToken);
 
 export default router;

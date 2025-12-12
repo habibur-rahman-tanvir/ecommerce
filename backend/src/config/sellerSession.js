@@ -8,7 +8,7 @@ const mongoStore = MongoStore.create({
   collectionName: 'seller-session',
 });
 
-const sellerSessionMiddleware = session({
+const sellerSession = session({
   secret: process.env.SELLER_SEEION_SECRET || 'jFspOUugEV',
   store: mongoStore,
   resave: false,
@@ -18,8 +18,8 @@ const sellerSessionMiddleware = session({
     httpOnly: true,
     secure: true,
     sameSite: 'none',
-    maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+    maxAge: 1000 * 60 * 60 * 24 * 3, // 3 days
   },
 });
 
-export default sellerSessionMiddleware;
+export default sellerSession;

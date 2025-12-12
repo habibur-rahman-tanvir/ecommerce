@@ -16,7 +16,7 @@ const userSchema = new Schema(
     },
   },
   {
-    discriminatorKey: 'kind',
+    discriminatorKey: 'role',
     versionKey: false,
     timestamps: true,
   },
