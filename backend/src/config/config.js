@@ -1,0 +1,2 @@
+export const SELLER_SESSION_EXPIRE_TIME_DAY = 3;
+export const SELLER_JWT_EXPIRE_TIME = 15;

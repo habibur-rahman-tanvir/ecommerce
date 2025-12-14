@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import Seller from '../model/sellerModel.js';
 import AppError from '../error/AppError.js';
+import { SELLER_JWT_EXPIRE_TIME } from '../config/config.js';
 
 export const createSeller = async (req, res) => {
   const { shopName, email, password } = req.body || {};
@@ -44,7 +45,7 @@ export const refreshJwtToken = async (req, res) => {
   if (!req.session.user) {
     throw new AppError('Seller not signed in', 401);
   }
-  const secret = process.env.SELLER_JWT_SECRET || 'n3yOH6TbscCVt&~';
+  const secret = process.env.SELLER_JWT_SECRET || 'SELLER_JWT_SECRET';
   const token = jwt.sign(
     {
       id: `${req.session.user?.id}`,
@@ -54,9 +55,17 @@ export const refreshJwtToken = async (req, res) => {
     secret,
     {
       noTimestamp: true,
-      expiresIn: 60 * 15, // valid for 15 minutes
+      expiresIn: 60 * SELLER_JWT_EXPIRE_TIME,
     },
   );
+
+  res.cookie('jwt', token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+    maxAge: 1000 * 60 * SELLER_JWT_EXPIRE_TIME,
+  });
+
   res.json({
     status: 'success',
     jwt: token,

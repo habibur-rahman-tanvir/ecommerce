@@ -1,6 +1,7 @@
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import 'dotenv/config';
+import { SELLER_SESSION_EXPIRE_TIME_DAY } from './config.js';
 
 const mongoStore = MongoStore.create({
   mongoUrl: process.env.DATABASE_URI,
@@ -18,7 +19,7 @@ const sellerSession = session({
     httpOnly: true,
     secure: true,
     sameSite: 'none',
-    maxAge: 1000 * 60 * 60 * 24 * 3, // 3 days
+    maxAge: 1000 * 60 * 60 * 24 * SELLER_SESSION_EXPIRE_TIME_DAY,
   },
 });
 
