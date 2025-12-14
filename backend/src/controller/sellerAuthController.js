@@ -34,6 +34,7 @@ export const logoutSeller = async (req, res) => {
   req.session.destroy((err) => {
     if (err) throw new AppError('Signout failed', 500);
     res.clearCookie('connect.sid');
+    res.clearCookie('jwt');
     return res.json({
       status: 'success',
       message: 'Signout successful',
