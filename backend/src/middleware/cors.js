@@ -1,7 +1,7 @@
 import cors from 'cors';
 import AppError from '../error/AppError.js';
 
-const whiteList = [];
+const whiteList = [undefined];
 
 const corsMiddleware = cors({
   origin: (origin, callbak) => {
