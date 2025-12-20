@@ -8,6 +8,8 @@ import corsMiddleware from './middleware/cors.js';
 import verifyJWT from './middleware/verifyJWT.js';
 
 const app = express();
+app.set('trust proxy', 1);
+
 app.use(cookieParser());
 app.use((req, res, next) => {
   console.log(JSON.stringify(req.cookies, null, 2));
