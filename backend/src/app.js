@@ -8,9 +8,13 @@ import corsMiddleware from './middleware/cors.js';
 import verifyJWT from './middleware/verifyJWT.js';
 
 const app = express();
+app.use(cookieParser());
+app.use((req, res, next) => {
+  console.log(req.cookies);
+  next();
+});
 
 app.use(corsMiddleware);
-app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
