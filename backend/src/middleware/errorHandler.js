@@ -1,10 +1,15 @@
 /* eslint-disable no-unused-vars */
 import ValidationError from '../error/ValidationError.js';
 import DuplicatError from '../error/DuplicatError.js';
+import CastError from '../error/CastError.js';
 
 const errorHandler = (err, req, res, next) => {
   if (err.name === 'ValidationError') {
     err = new ValidationError(err);
+  }
+
+  if (err.name === 'CastError') {
+    err = new CastError(err);
   }
 
   if (err.code === 11000) {

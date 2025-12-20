@@ -9,6 +9,6 @@ const router = express.Router();
 router.use(roles(['seller']));
 
 router.post('/product', addProduct);
-router.delete('/product', deleteProduct);
+router.delete('/product/:id', deleteProduct);
 
 export default router;

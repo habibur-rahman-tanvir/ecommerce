@@ -1,3 +1,4 @@
+import AppError from '../error/AppError.js';
 import Product from '../model/productModel.js';
 
 export const addProduct = async (req, res) => {
@@ -10,5 +11,10 @@ export const addProduct = async (req, res) => {
 };
 
 export const deleteProduct = async (req, res) => {
-  res.send('Deleting....');
+  const product = await Product.findOneAndDelete({
+    _id: req.params.id,
+    seller: req.user.id,
+  });
+  if (!product) throw new AppError('Product not found', 404);
+  res.status(204).end();
 };
