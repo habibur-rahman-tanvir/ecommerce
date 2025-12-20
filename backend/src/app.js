@@ -10,7 +10,7 @@ import verifyJWT from './middleware/verifyJWT.js';
 const app = express();
 app.use(cookieParser());
 app.use((req, res, next) => {
-  console.log(req.cookies);
+  console.log(JSON.stringify(req.cookies, null, 2));
   next();
 });
 
