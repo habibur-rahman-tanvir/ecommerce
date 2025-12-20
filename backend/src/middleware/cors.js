@@ -11,6 +11,7 @@ const corsMiddleware = cors({
       callbak(new AppError('Not allowed by CORS'));
     }
   },
+  credentials: true,
 });
 
 export default corsMiddleware;
