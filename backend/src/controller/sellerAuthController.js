@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import Seller from '../model/sellerModel.js';
 import AppError from '../error/AppError.js';
-import { SELLER_JWT_EXPIRE_TIME } from '../config/config.js';
+import { SELLER_JWT_EXPIRE_TIME_MINUTES } from '../config/config.js';
 
 export const createSeller = async (req, res) => {
   const { shopName, email, password } = req.body || {};
@@ -56,7 +56,7 @@ export const refreshJwtToken = async (req, res) => {
     secret,
     {
       noTimestamp: true,
-      expiresIn: 60 * SELLER_JWT_EXPIRE_TIME,
+      expiresIn: 60 * SELLER_JWT_EXPIRE_TIME_MINUTES,
     },
   );
 
@@ -64,7 +64,7 @@ export const refreshJwtToken = async (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite: 'none',
-    maxAge: 1000 * 60 * SELLER_JWT_EXPIRE_TIME,
+    maxAge: 1000 * 60 * SELLER_JWT_EXPIRE_TIME_MINUTES,
   });
 
   res.json({
