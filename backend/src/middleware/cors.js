@@ -1,7 +1,11 @@
 import cors from 'cors';
 import AppError from '../error/AppError.js';
 
-const whiteList = [undefined, 'https://localhost:5173'];
+const whiteList = [
+  undefined,
+  'https://localhost:5173',
+  'https://ecommerce-wine-kappa-50.vercel.app',
+];
 
 const corsMiddleware = cors({
   origin: (origin, callbak) => {
