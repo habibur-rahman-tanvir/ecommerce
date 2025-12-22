@@ -11,11 +11,6 @@ const app = express();
 app.set('trust proxy', 1);
 
 app.use(cookieParser());
-app.use((req, res, next) => {
-  console.log(JSON.stringify(req.cookies, null, 2));
-  next();
-});
-
 app.use(corsMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

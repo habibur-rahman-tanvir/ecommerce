@@ -4,8 +4,8 @@ import AppError from '../error/AppError.js';
 import { SELLER_JWT_EXPIRE_TIME_MINUTES } from '../config/config.js';
 
 export const createSeller = async (req, res) => {
-  const { shopName, email, password } = req.body || {};
-  const seller = await Seller.create({ shopName, email, password });
+  const { shopName, email, phone, password } = req.body || {};
+  const seller = await Seller.create({ shopName, email, phone, password });
   res.status(201).json({
     status: 'success',
     message: 'Seller created sucessfully',

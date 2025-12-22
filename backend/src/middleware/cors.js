@@ -1,19 +1,14 @@
 import cors from 'cors';
 import AppError from '../error/AppError.js';
-
-const whiteList = [
-  undefined,
-  'https://localhost:5173',
-  'https://ecommerce-wine-kappa-50.vercel.app',
-];
+import { WHITE_LIST } from '../config/config.js';
 
 const corsMiddleware = cors({
-  origin: (origin, callbak) => {
-    if (whiteList.length === 0 || whiteList.includes(origin)) {
-      callbak(null, true);
+  origin: (origin, callback) => {
+    if (WHITE_LIST.length === 0 || WHITE_LIST.includes(origin)) {
+      callback(null, true);
     } else {
       console.log('BLOCKED_ORIGIN:', origin);
-      callbak(new AppError('Not allowed by CORS'));
+      callback(new AppError('Not allowed by CORS'));
     }
   },
   credentials: true,

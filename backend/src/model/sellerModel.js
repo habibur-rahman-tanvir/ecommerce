@@ -7,7 +7,10 @@ const sellerSchema = new Schema({
     type: String,
     required: [true, 'Store name required'],
   },
-  phone: String,
+  phone: {
+    type: String,
+    required: [true, 'Phone number required'],
+  },
   isApproved: {
     type: Boolean,
     default: false,

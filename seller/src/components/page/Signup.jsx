@@ -35,7 +35,7 @@ const Signup = () => {
       });
       return;
     }
-    toast("User created successfully");
+    toast.success(data2.message);
   };
 
   return (
@@ -68,7 +68,7 @@ const Signup = () => {
           value={data.phone}
           name="phone"
           type="phone"
-          placeholder="Phone (optional)"
+          placeholder="Phone"
         />
         <Input
           onChange={handleInput}
