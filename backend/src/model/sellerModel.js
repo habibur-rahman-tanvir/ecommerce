@@ -5,7 +5,7 @@ import User from './userModel.js';
 const sellerSchema = new Schema({
   shopName: {
     type: String,
-    required: true,
+    required: [true, 'Store name required'],
   },
   phone: String,
   isApproved: {

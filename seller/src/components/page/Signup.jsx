@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Input from "../atom/Input";
+import { baseUrl } from "../../config/config";
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
@@ -13,9 +15,26 @@ const Signup = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(JSON.stringify(data, null, 2));
+
+    const res = await fetch(`${baseUrl}/api/seller/auth/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(data),
+    });
+    const data2 = await res.json();
+
+    if (data2.status === "fail" && data2.errors) {
+      data2.errors.forEach((item) => {
+        toast.error(item.message);
+      });
+      return;
+    }
+    toast("User created successfully");
   };
 
   return (
@@ -60,7 +79,7 @@ const Signup = () => {
         </label>
 
         <input
-          className="bg-[#d4408e] py-1 w-full rounded-xl text-white font-bold"
+          className="bg-[#e44df5] active:bg-green-800 py-1 w-full rounded-xl text-white font-bold"
           type="submit"
           value="SIGNUP"
         />
