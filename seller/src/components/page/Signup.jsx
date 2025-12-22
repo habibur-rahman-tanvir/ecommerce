@@ -9,6 +9,7 @@ const Signup = () => {
     shopName: "",
     email: "",
     password: "",
+    phone: "",
   });
 
   const handleInput = (e) => {
@@ -52,13 +53,22 @@ const Signup = () => {
           value={data.shopName}
           name="shopName"
           placeholder="Shop name"
+          // required={true}
         />
         <Input
           onChange={handleInput}
           value={data.email}
           name="email"
           type="email"
-          placeholder="email"
+          placeholder="Email"
+          // required={true}
+        />
+        <Input
+          onChange={handleInput}
+          value={data.phone}
+          name="phone"
+          type="phone"
+          placeholder="Phone (optional)"
         />
         <Input
           onChange={handleInput}
@@ -66,6 +76,7 @@ const Signup = () => {
           name="password"
           type={show ? "text" : "password"}
           placeholder="New password"
+          // required={true}
         />
 
         <input
