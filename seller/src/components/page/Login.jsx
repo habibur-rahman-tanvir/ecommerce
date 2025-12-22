@@ -99,7 +99,7 @@ const Login = () => {
           disabled={loading}
         />
 
-        <p className="text-sm mt-2.5 text-gray-500">
+        <p className="text-sm mt-2.5 text-center text-gray-500">
           Create an store.{" "}
           <NavLink className="font-bold text-blue-600" to="/signup">
             Signup

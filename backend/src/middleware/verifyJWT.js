@@ -19,19 +19,24 @@ const verifyJWT = (req, res, next) => {
     token = req.cookies.jwt;
   }
 
-  if (!token) throw new AppError('Auth token missing', 401);
+  // if (!token) throw new AppError('Auth token missing', 401);
+  if (!token) {
+    res.status(401).end();
+    return;
+  }
 
   let decoded;
   try {
     decoded = jwt.verify(token, secret);
   } catch (err) {
-    if (err.name === 'TokenExpiredError') {
-      throw new AppError('Token has expired', 401);
-    }
-    if (err.name === 'JsonWebTokenError') {
-      throw new AppError('Invalid token', 401);
-    }
-    throw new AppError('Could not verify token', 401);
+    // if (err.name === 'TokenExpiredError') {
+    //   throw new AppError('Token has expired', 401);
+    // }
+    // if (err.name === 'JsonWebTokenError') {
+    //   throw new AppError('Invalid token', 401);
+    // }
+    // throw new AppError('Could not verify token', 401);
+    res.status(401).end();
   }
 
   req.user = {
