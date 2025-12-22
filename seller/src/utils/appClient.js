@@ -41,7 +41,6 @@ const fetchData = async (url, options = {}) => {
       res = await sendRequest();
     } else {
       window.dispatchEvent(new CustomEvent("auth:unauthorized"));
-      // throw new Error("UNAUTHORIZED");
     }
   }
   return res;
