@@ -10,7 +10,7 @@ await connectDatabase();
 
 if (process.env.NODE_ENV === 'production') {
   app.listen(PORT, () => {
-    console.log(`Server(production) running at http://localhost:${PORT}`);
+    console.log(`Server(production) running ....`);
   });
 } else {
   const key = await fs.readFileSync('./src/certificate/localhost-key.pem');
