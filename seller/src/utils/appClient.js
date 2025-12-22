@@ -10,7 +10,6 @@ const refreshToken = async () => {
     });
   }
   isRefreshing = true;
-  console.log("Refreshing....");
   const res = await fetch(`${baseUrl}/api/seller/auth/refresh`, {
     method: "POST",
     credentials: "include",
@@ -35,7 +34,6 @@ const fetchData = async (url, options = {}) => {
   };
   let res = await sendRequest();
   if (res.status === 401) {
-    console.warn("Access token expired… trying refresh.");
     const token = await refreshToken();
     if (token) {
       res = await sendRequest();
