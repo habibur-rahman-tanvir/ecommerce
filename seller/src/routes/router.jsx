@@ -3,19 +3,12 @@ import Login from "../components/page/Login";
 import Signup from "../components/page/signup";
 import DashboardLayout from "../layout/DashboardLayout";
 import AuthProvider from "../context/AuthProvider";
+import Home from "../layout/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <p>
-        <a href="/signup">Signup</a>
-        <br />
-        <a href="/login">Login</a>
-        <br />
-        <a href="/dashboard">Dashboard</a>
-      </p>
-    ),
+    element: <Home />,
   },
   {
     path: "signup",
