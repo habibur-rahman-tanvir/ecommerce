@@ -8,6 +8,7 @@ const Input = ({
   onChange,
   placeholder,
   required = false,
+  disabled,
 }) => {
   return (
     <input
@@ -21,6 +22,7 @@ const Input = ({
       value={value}
       name={name}
       required={required}
+      disabled={disabled}
     />
   );
 };
