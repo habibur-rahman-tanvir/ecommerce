@@ -43,7 +43,7 @@ const Login = () => {
       }
 
       toast.success(data2.message);
-      navigate("/dashboard");
+      navigate("/dashboard", { replace: true });
     } catch (err) {
       console.log(err);
       toast.error("Some went wrong!");

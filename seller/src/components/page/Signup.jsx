@@ -45,7 +45,7 @@ const Signup = () => {
         return;
       }
       toast.success(data2.message);
-      navigate("/login");
+      navigate("/login", { replace: true });
     } catch (err) {
       console.log(err);
 
