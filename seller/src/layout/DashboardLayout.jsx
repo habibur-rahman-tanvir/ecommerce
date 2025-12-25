@@ -32,7 +32,7 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div>
+    <div className="flex w-full h-screen overflow-hidden bg-linear-45 from-[#5fd7df] to-[#bd9aec]">
       <div className="[&>button]:border-2 [&>button]:m-1">
         <button onClick={handleRefresh}>Refresh</button>
         <button onClick={handleProfile}>Profile</button>
