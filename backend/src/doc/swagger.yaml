@@ -1,0 +1,70 @@
+openapi: 3.0.4
+info:
+  title: Ecomerce API
+  description: This is my first and fast ecomerce beckend api DOC.
+  version: 1.0.0
+
+servers:
+  - url: https://localhost:8000
+    description: This is local server
+
+paths:
+  /api/seller/auth/signup:
+    post:
+      summary: Create seller account.
+      tags:
+        - Seller Auth
+      description: Optional extended description in CommonMark or HTML.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shopName:
+                  type: string
+                  example: ABC Shop
+                email:
+                  type: string
+                  example: abc@gmail.com
+                phone:
+                  type: string
+                  example: 01xxx-xxxxxx
+                password:
+                  type: string
+
+      responses:
+        '201': # status code
+          description: Seller created sucessfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Seller created sucessfully
+                  sellerId:
+                    type: string
+                    example: 66fe3f8a4f9a4c1e6c8e31a8
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              example:
+                {
+                  status: fail,
+                  message: Validation failed,
+                  errors:
+                    [
+                      {
+                        message: mesvs,
+                        field: (field name),
+                        value: (field value),
+                      },
+                    ],
+                }

@@ -6,6 +6,7 @@ import sellerDashboardRoute from './routes/sellerDashboardRoute.js';
 import errorHandler from './middleware/errorHandler.js';
 import corsMiddleware from './middleware/cors.js';
 import verifyJWT from './middleware/verifyJWT.js';
+import { swaggerUi, swaggerDoc } from './doc/swagger.js';
 
 const app = express();
 app.set('trust proxy', 1);
@@ -14,6 +15,8 @@ app.use(cookieParser());
 app.use(corsMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.use('/api/seller/auth', sellerAuthRoute);
 app.use('/api/seller/profile', verifyJWT, sellerProfileRoute);

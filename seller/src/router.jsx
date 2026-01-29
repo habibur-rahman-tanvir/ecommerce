@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import Login from "./components/page/Login";
 import Signup from "./components/page/signup";
-import DashboardLayout from "./layout/DashboardLayout";
+import DashboardLayout from "./layout/dashboard/DashboardLayout";
 import AuthProvider from "./context/AuthProvider";
 import Home from "./layout/home/Home";
 import profileLoader from "./layout/dashboard/dashboard.loader";
